@@ -87,7 +87,7 @@ public class Res extends RESTService {
    * gettest
    *
    * 
-   * @param jsonpayload  a JSONObject
+   * @param jsonpayload Just a test description. a JSONObject
    * 
    * @return Response 
    * 
@@ -97,12 +97,18 @@ public class Res extends RESTService {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @ApiResponses(value = {
-       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "res")
+       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "res2")
   })
   @ApiOperation(value = "gettest", notes = " ")
   public Response gettest(String jsonpayload) {
-    JSONObject jsonpayload_JSON = (JSONObject) JSONValue.parse(jsonpayload);
-
+   classes.User payloadjsonpayloadObject = new classes().new User();
+   try { 
+       payloadjsonpayloadObject.fromJSON(jsonpayload);
+   } catch (Exception e) { 
+       e.printStackTrace();
+       JSONObject result = new JSONObject();
+       return Response.status(HttpURLConnection.HTTP_INTERNAL_ERROR).entity("Cannot convert json to object").build();
+   }
 
 
 
@@ -114,9 +120,9 @@ public class Res extends RESTService {
 
 
 
-    // res
-    boolean res_condition = true;
-    if(res_condition) {
+    // res2
+    boolean res2_condition = true;
+    if(res2_condition) {
       JSONObject result = new JSONObject();
 
       
