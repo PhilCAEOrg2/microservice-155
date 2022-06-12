@@ -105,6 +105,39 @@ public class ResTest {
   }
 
 
+  /**
+   * 
+   * Second Test for the JSONPayloadTest_ID756002 method.
+   * 
+   */
+  @Test
+  public void testJSONPayloadTest_ID756002() {
+    MiniClient c = new MiniClient();
+    c.setConnectorEndpoint(connector.getHttpEndpoint());
+    
+        
+    try {
+      c.setLogin(AnonymousAgentImpl.IDENTIFIER, "");
+      ClientResponse result = c.sendRequest("GET", mainPath + "/test", """
+{
+  "id": 5
+}""");
+      System.out.println("Result of request with id: 511370: " + result.getResponse().trim());
+    
+      Assert.assertEquals("[4344]", 200, result.getHttpCode());
+  Object response = JSONValue.parse(result.getResponse().trim());
+      // Response body has type JSON Object
+      assertThat("[220382]", response, isA(JSONObject.class));
+      
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Exception: " + e);
+    }
+    
+
+    
+  }
 
 
 
