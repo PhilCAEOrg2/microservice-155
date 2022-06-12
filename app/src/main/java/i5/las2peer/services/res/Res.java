@@ -71,7 +71,7 @@ public class Res extends RESTService {
 
   @Api
   @SwaggerDefinition(
-      info = @Info(title = "155", version = "0.0.0",
+      info = @Info(title = "155", version = "",
           description = "",
           termsOfService = "",
           contact = @Contact(name = "", email = "CAEAddress@gmail.com") ,
@@ -92,7 +92,7 @@ public class Res extends RESTService {
    * @return Response 
    * 
    */
-  @GET
+  @POST
   @Path("/test")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
