@@ -87,7 +87,7 @@ public class Res extends RESTService {
    * gettest
    *
    * 
-   * @param jsonpayload Just a test description. a String
+   * @param jsonpayload Just a test description. a JSONObject
    * 
    * @return Response 
    * 
@@ -95,13 +95,20 @@ public class Res extends RESTService {
   @GET
   @Path("/test")
   @Produces(MediaType.APPLICATION_JSON)
-  @Consumes(MediaType.TEXT_PLAIN)
+  @Consumes(MediaType.APPLICATION_JSON)
   @ApiResponses(value = {
        @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "res2")
   })
   @ApiOperation(value = "gettest", notes = " ")
   public Response gettest(String jsonpayload) {
-
+   classes.User payloadjsonpayloadObject = new classes().new User();
+   try { 
+       payloadjsonpayloadObject.fromJSON(jsonpayload);
+   } catch (Exception e) { 
+       e.printStackTrace();
+       JSONObject result = new JSONObject();
+       return Response.status(HttpURLConnection.HTTP_INTERNAL_ERROR).entity("Cannot convert json to object").build();
+   }
 
 
 
