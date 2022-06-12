@@ -118,7 +118,7 @@ public class ResTest {
         
     try {
       c.setLogin(AnonymousAgentImpl.IDENTIFIER, "");
-      ClientResponse result = c.sendRequest("GET", mainPath + "/test", """
+      ClientResponse result = c.sendRequest("POST", mainPath + "/test", """
 {
   "id": 5
 }""");
